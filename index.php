@@ -1,7 +1,7 @@
 <?php 
 require 'includes/app.php';
 
-
+//desde desarrollo
 incluirTemplates('header', $inicio = true);
 
 ?>
