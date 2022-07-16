@@ -1,0 +1,44 @@
+@use '../base/mixins' as m;
+@use '../base/variable' as v;
+
+
+.contenedor-anuncios{
+    @include m.tablet  {
+        @include m.grid(3, 1fr);
+        gap: 2rem;
+            
+        
+    }
+}
+
+.contenido-anuncio{
+    padding: 3rem;
+    background-color: lighten(v.$gris, 5);
+    border: 1px solid darken(v.$gris, 10);
+    margin-bottom: 3rem;
+
+    h3{text-transform: uppercase;}
+    h3, p{margin: 0;}
+
+}
+
+.precio{color: v.$verde;
+    font-weight: bold;
+    font-size: 3rem;}
+    
+.iconos-caracteristicas{
+    display: flex;
+    padding: 0;
+    list-style: none;
+    
+    li{
+        flex: 1;
+        display: flex;
+
+        img{
+            flex: 0 0 3rem;
+            margin-right: 1rem;}
+        
+        p{ font-weight: bold;}    
+    }
+}

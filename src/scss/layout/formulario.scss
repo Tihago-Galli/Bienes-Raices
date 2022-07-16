@@ -1,0 +1,50 @@
+@use '../base/mixins' as m;
+@use '../base/variable' as v;
+.formulario{
+    p{
+        color: v.$grisOscuro;
+        margin: 2rem 0 0 0;
+        font-size: 1.4rem;
+    }
+
+    legend{
+        font-size: 2rem;
+        color: v.$grisOscuro;
+        font-weight: 700;
+    }
+
+    label{
+        display: block;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    input:not([type="submit"]),
+    textarea, select{
+        padding: 1rem;
+        display: block;
+        width: 100%;
+        border: 1px solid v.$gris;
+        background-color: v.$blanco;
+        margin-bottom: 2rem;
+    }
+    textarea{
+        height: 20rem;
+    }
+
+    .forma-contacto{
+        max-width: 30rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    input[type="radio"]{
+        width: auto;
+        margin: 0;
+    }
+
+    input[type="submit"]{
+        margin-top: 2rem;
+    }
+}

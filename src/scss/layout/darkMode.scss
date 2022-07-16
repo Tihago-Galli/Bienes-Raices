@@ -1,0 +1,68 @@
+@use '../base/variable' as v;
+
+.dark_mode{
+    background-color: darken(v.$grisOscuro, 10);
+
+    p{color: v.$blanco;}
+
+    a,h1,h2,h3,h4{
+        color: v.$gris;
+    }
+
+    .contenido-anuncio{
+        background-color:  v.$grisOscuro;
+        border: 1px solid v.$grisOscuro;
+
+    
+
+
+
+    }
+    .precio{color: v.$verde;}
+    .iconos-caracteristicas{
+        img{filter: invert(100%);}
+    }
+
+
+    .nosotros_texto{
+        blockquote{
+            color: v.$gris;
+        }
+    }
+
+    .formulario{
+
+        label, legend{
+            color: v.$blanco;
+        }
+
+    input:not([type="submit"]),
+    textarea, select{
+
+        background-color: v.$grisOscuro;
+        border: 1px solid v.$grisOscuro;
+        color: v.$blanco;
+    }
+
+}
+
+table.propiedades{
+   
+
+    thead{
+       
+        color:v.$blanco;
+    }
+
+    td{
+        color: v.$blanco;
+    }
+
+    tbody tr:nth-child(odd){
+        background-color: darken(v.$negro, 15%);
+    }
+
+}
+
+
+}
