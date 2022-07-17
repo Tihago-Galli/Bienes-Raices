@@ -4,6 +4,7 @@
 define('TEMPLATE_URL',__DIR__. '/templates');
 define('FUNCIONES_URL',__DIR__.'funciones.php');
 define('CARPETA_IMAGENES',__DIR__.'/../imagenes/');
+define('CARPETA_VENDEDORES',__DIR__.'/../vendedoresPerfil/');
 
 function incluirTemplates( string $nombre, bool $inicio = false){
 

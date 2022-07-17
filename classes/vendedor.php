@@ -28,6 +28,7 @@ class Vendedor extends ActiveRecord{
         
     }
 
+
     public function validar(){
         if(!$this->nombre){
             self::$errores[] = 'Debes añadir un nombre';
@@ -46,6 +47,9 @@ class Vendedor extends ActiveRecord{
           if(!$this->email){
             self::$errores[] = 'Debes añadir un email';
           }
+          if(!$this->imagen){
+            self::$errores[] = 'Debes añadir una imagen';
+        }
           
 
           return self::$errores;

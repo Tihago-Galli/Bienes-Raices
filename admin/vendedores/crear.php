@@ -1,28 +1,53 @@
 <?php 
-include '../../includes/app.php';
+require '../../includes/app.php';
 
 use App\Vendedor;
+use Intervention\Image\ImageManagerStatic as Imagen;
 
 estaAutenticado();
 
-$vendedor = new Vendedor();
+$vendedor = new Vendedor;
 
 
 $errores = Vendedor::getErrores();
 
 if($_SERVER['REQUEST_METHOD'] ==='POST'){
 
-  //creamos una nueva instancia
-  $vendedor = new Vendedor($_POST['vendedor']);
+  $vendedor = new Vendedor($_POST['vendedor']); //creamos una nueva instancia almacenandola en post en memoria
+  
+  
+    //creando la carpeta para guardar imagen
+    //comprobamos de que si la carpeta no existe, la creamos
+    if(!is_dir(CARPETA_VENDEDORES)){
+        mkdir(CARPETA_VENDEDORES);
+    }
+  
+    //generar nombre unico a la imagen
+    $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+  
+  
+              //subida de imagen
+              //realiza un resize a la imagen con intervention
+              if($_FILES['vendedor']['tmp_name']['imagen']){
+              $imagen = Imagen::make($_FILES['vendedor']['tmp_name']['imagen'])->fit(800,600);
+              $vendedor->setImagen($nombreImagen);
+              }
+          //validar 
+          $errores = $vendedor->validar();
+  
+      //validar de que errores este vacio para enviar datos al servidor
+      if(empty($errores)){
+  
+         
+              //guardar imagen
+              $imagen->save(CARPETA_VENDEDORES . $nombreImagen);
+  
+              //guardar en la base de datos
+            $vendedor->guardar();
+      }
+  
 
- 
-  $errores = $vendedor->validar();
-
-  if(empty($errores)){
-    $vendedor->guardar();
-  }
-
-}
+};
 
 incluirTemplates('header');
 

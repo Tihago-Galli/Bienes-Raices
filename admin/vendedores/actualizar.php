@@ -1,9 +1,12 @@
 <?php 
-include '../../includes/app.php';
+
 
 use App\Vendedor;
+use Intervention\Image\ImageManagerStatic as Imagen;
 
+require '../../includes/app.php';
 estaAutenticado();
+
 
 //validamos de que el id sea un id valido
 $id = $_GET['id'];
@@ -25,17 +28,34 @@ $errores = Vendedor::getErrores();
 
 if($_SERVER['REQUEST_METHOD'] ==='POST'){
 
-  //asignar los valores
-  $array = $_POST['vendedor'];
+  //asignar valores
+$array = $_POST['vendedor'];
 
-  //sincronizar objeto en memoria con lo que el usuario este escribiendo
-  $vendedor->sincronizar($array);
+$vendedor->sincronizar($array);
 
-$errores = $vendedor->validar();
+  //validacion
+ $errores = $vendedor->validar();
 
+
+  //SUBIDA DE ARCHIVO
+   //generar nombre unico a la imagen
+  $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+
+
+ if($_FILES['vendedor']['tmp_name']['imagen']){
+  $imagen = Imagen::make($_FILES['vendedor']['tmp_name']['imagen'])->fit(800,600);
+  $vendedor->setImagen($nombreImagen);
+  }
+
+  //validar de que errores este vacio para enviar datos al servidor
   if(empty($errores)){
 
-    $vendedor->guardar();
+      if($_FILES['vendedor']['tmp_name']['imagen']){
+      //almacenar imagen
+      $imagen->save(CARPETA_VENDEDORES . $nombreImagen);
+      }
+      $vendedor->guardar();
+  
 
   }
  

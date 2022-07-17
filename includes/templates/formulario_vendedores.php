@@ -9,7 +9,7 @@
                 <input type="file" accept="image/jpeg, image/png" name="vendedor[imagen]" id="imagen">
 
                 <?php   if ($vendedor->imagen): ?>
-                    <img src="/imagenesVendedor/<?php echo $vendedor->imagen ?>" alt="">
+                    <img src="/vendedoresPerfil/<?php echo $vendedor->imagen ?>" alt="">
                 <?php endif; ?>
             </fieldset>
                

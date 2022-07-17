@@ -42,6 +42,7 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
 
                 $vendedor = Vendedor::find($id);
                 $vendedor ->eliminar();
+                
             }
         }
         
@@ -106,6 +107,7 @@ incluirTemplates('header');
             <th>NOMBRE y APELLIDO</th>
             <th>TELEFONO</th>
             <th>EMAIL</th>
+            <th>IMAGEN</th>
             <th>ACCION</th>
         </tr>
         </thead>
@@ -116,6 +118,7 @@ incluirTemplates('header');
                 <td> <?php echo $vendedor->nombre ." ". $vendedor->apellido?> </td>
                 <td> <?php echo $vendedor->telefono ?> </td>
                 <td> <?php echo $vendedor->email ?> </td>
+                <td><img src="/vendedoresPerfil/<?php echo $vendedor->imagen; ?> " alt="" class="imagen"></td>
                 <td>
                     <a href="admin/vendedores/actualizar.php?id=<?php echo $vendedor->id ?>" class="boton-amarillo-block">Actualizar</a>
                     <form method="POST">

@@ -25,10 +25,6 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
 $propiedad = new Propiedad($_POST['propiedad']); //creamos una nueva instancia almacenandola en post en memoria
 
 
-
-
-
-
   //creando la carpeta para guardar imagen
   //comprobamos de que si la carpeta no existe, la creamos
   if(!is_dir(CARPETA_IMAGENES)){
@@ -52,18 +48,12 @@ $propiedad = new Propiedad($_POST['propiedad']); //creamos una nueva instancia a
     if(empty($errores)){
 
        
-    
             //guardar imagen
             $imagen->save(CARPETA_IMAGENES . $nombreImagen);
 
             //guardar en la base de datos
           $propiedad->guardar();
-
-
     }
-
-
-
 
 };
 
